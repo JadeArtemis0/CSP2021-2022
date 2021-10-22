@@ -23,7 +23,7 @@ is_zero = 0
 while is_zero <6:
     tr.left(60)
     #draws the shading on the snake (the shadow)
-    tr.speed(7)
+    tr.speed(0)
     tr.goto(0,-15)
     tr.pendown()
     tr.pensize(15)
@@ -36,7 +36,7 @@ while is_zero <6:
 
     #Draws the snake body in navy blue
     snake_color = (input("What color do you want your snake to be?"))
-    tr.speed(7)
+    tr.speed(0)
     tr.goto(5,-15)
     tr.pendown()
     tr.pensize(15)
