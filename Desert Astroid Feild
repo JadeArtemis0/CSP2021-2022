@@ -1,0 +1,52 @@
+import pygame
+#from system import exit module(to safely close a pygame window)
+from sys import exit
+from pygame.locals import *
+import random as rand
+#starts pygame
+pygame.init()
+
+screen = pygame.display.set_mode((800, 400))
+#Changes the name of the window to the name of the game (Cube Desert)
+pygame.display.set_caption("Cube Desert")
+
+clock = pygame.time.Clock()
+test_font = pygame.font.Font(None, 50)
+
+#draws a green ground
+ground_surface = pygame.Surface((1000, 200))
+ground_surface.fill("Yellow")
+
+#draws the text surface for "core ="
+text_surface = test_font.render("Score = ", False, "green")
+
+#Draws a blue sky
+sky_surface = pygame.Surface((1000, 350))
+sky_surface.fill("Blue")
+
+#falling block surface + x & y positioning keys
+fallingblock_surface = pygame.Surface((40, 40))
+fallingblock_surface.fill("Black")
+fallingblock_y_pos = 0
+fallingblock_x_pos_rand = rand.randrange(0-800, 1)
+#used in line 48!
+iszero_once = 0
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+    #blit is block image transpher
+    screen.blit(sky_surface, (0,0))
+    screen.blit(ground_surface, (0,350))
+    screen.blit(text_surface, (300, 50))
+    #makes the block fall down at 2.5 speed
+    fallingblock_y_pos += 2.5
+    if fallingblock_y_pos > 450: fallingblock_y_pos = 0
+    while iszero_once < 10:
+        screen.blit(fallingblock_surface, (fallingblock_x_pos_rand, fallingblock_y_pos))
+        #referance: line 32 ^
+        iszero_once += 1
+    pygame.display.update()
+
+    clock.tick(60)
